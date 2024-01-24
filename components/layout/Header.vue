@@ -5,7 +5,7 @@ import { HEADER_DATA } from "~/components/layout/header.data";
 <template>
   <div class="flex flex-wrap items-center justify-between mx-auto px-8 py-4 border-b-2">
     <NuxtLink v-for="item in HEADER_DATA" :key="item.name" :to="item.url">
-      <span>{{ item.name }}</span>
+      <span class="text-lg text-slate-800 font-bold">{{ item.name }}</span>
     </NuxtLink>
 
     <div class="flex w-full max-w-xs items-center space-x-2">
