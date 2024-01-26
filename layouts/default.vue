@@ -3,11 +3,12 @@
 
 <template>
   <LayoutHeader />
-  <section class="min-h-screen flex-col">
+  <section>
     <div>
       <slot />
     </div>
   </section>
+  <LayoutFooter />
 </template>
 
 <style scoped>
