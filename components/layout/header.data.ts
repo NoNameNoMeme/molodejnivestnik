@@ -10,6 +10,6 @@ export const HEADER_DATA: IHeaderItem[] = [
     },
     {
         name: 'Новости об активистах республики',
-        url: '/news',
+        url: '/newslist',
     },
 ]
