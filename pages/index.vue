@@ -1,14 +1,20 @@
-<script setup>
+<script setup lang="ts">
+useHead({
+  title: 'Новости',
+})
 import { HOME_DATA } from "~/components/home/home.data";
 
 let newsRef = ref([]);
+let newsMainRef = ref([]);
 
-async function addTodo() {
-  const todo = await fetch('http://api.molodejnivestnik.ru/api/news?limit=5').then((r) => r.json());
-  newsRef.value = todo.data;
+async function getNews() {
+  const news = await fetch('http://api.molodejnivestnik.ru/api/news?limit=5').then((r) => r.json());
+  const newsMain = await fetch('http://api.molodejnivestnik.ru/api/news?main=1').then((r) => r.json());
+  newsRef.value = news.data;
+  newsMainRef.value = newsMain.data;
 }
 
-addTodo()
+getNews()
 </script>
 
 <template>
@@ -19,10 +25,10 @@ addTodo()
       <h2 class="mb-12 text-center sm:text-7xl text-5xl font-bold">Новости и события</h2>
 
       <div class="grid gap-6 lg:grid-cols-2 xl:gap-x-12">
-        <div class="mb-6 lg:mb-0 border rounded-lg flex flex-col" v-for="item in HOME_DATA" :key="item.title">
+        <div class="mb-6 lg:mb-0 border rounded-lg flex flex-col" v-for="item in newsMainRef" :key="item.title">
           <div class="relative mb-6 overflow-hidden rounded-t-lg bg-cover bg-no-repeat shadow-lg dark:shadow-black/20"
                data-te-ripple-init data-te-ripple-color="light">
-            <img :src="item.img" class="w-full object-contain h-[350px]" alt="Louvre" />
+            <img :src="item.image" class="w-full object-cover h-[350px]" alt="Louvre" />
             <NuxtLink :to="`/news/detail/${item.id}`">
               <div
                   class="absolute top-0 right-0 bottom-0 left-0 h-full w-full overflow-hidden bg-fixed opacity-0 transition duration-300 ease-in-out hover:opacity-100 bg-[hsla(0,0%,98.4%,.15)]">
