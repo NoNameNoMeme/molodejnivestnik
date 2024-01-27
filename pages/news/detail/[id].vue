@@ -17,23 +17,22 @@ addTodo()
   <div class="container my-24 mx-auto md:px-6">
     <!-- Section: Design Block -->
     <section class="mb-32">
-      <img :src="newsRef.image"
-           class="mb-6 max-w-full rounded-lg shadow-lg dark:shadow-black/20 object-contain h-[350px]" alt="image" />
-
-      <div class="mb-6 flex items-center">
-        <div>
-          <span> Опубликовано <u>{{ newsRef.date }}</u></span>
-        </div>
-      </div>
-
       <h1 class="mb-6 text-3xl font-bold">
         {{ newsRef.title }}
       </h1>
-
-      <p>
+      <div class="mb-6 flex items-center">
+        <div>
+          <span> Опубликовано <u>{{ newsRef.published_at }}</u></span>
+        </div>
+      </div>
+      <p class="mb-6">
         {{ newsRef.description }}
       </p>
-      <template v-html="newsRef.content" />
+      <img :src="newsRef.image"
+           class="mb-6 max-w-full rounded-lg shadow-lg dark:shadow-black/20 object-contain h-[350px]" alt="image" />
+      <p class="mb-6">
+        {{ newsRef.content }}
+      </p>
     </section>
     <!-- Section: Design Block -->
   </div>

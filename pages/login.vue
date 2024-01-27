@@ -10,7 +10,7 @@ const router = useRouter()
 
 async function login(username: string, password: string) {
   try {
-    const response = await fetch('/api/login', {
+    const response = await fetch('http://api.molodejnivestnik.ru/api/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -23,10 +23,10 @@ async function login(username: string, password: string) {
     }
 
     const data = await response.json();
-    const token = data.access_token;
+    const token = data.token;
 
     // Сохранение токена в localStorage
-    localStorage.setItem('access_token', token);
+    localStorage.setItem('token', token);
 
     // Далее можно перенаправить пользователя на защищенную страницу
   } catch (error) {
@@ -37,6 +37,7 @@ async function login(username: string, password: string) {
 const handleLogin = async () => {
   await login(username.value, password.value);
   // Далее можно выполнить дополнительные действия после входа
+  await router.push('/admin')
 };
 </script>
 

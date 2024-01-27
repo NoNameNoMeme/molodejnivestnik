@@ -3,11 +3,7 @@
 
 <template>
   <LayoutHeader />
-  <section>
-    <div>
-      <slot />
-    </div>
-  </section>
+  <slot />
   <LayoutFooter />
 </template>
 
