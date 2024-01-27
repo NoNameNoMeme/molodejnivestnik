@@ -37,7 +37,7 @@ addTodo()
 
         <div class="mb-6 mr-auto w-full shrink-0 grow-0 basis-auto px-3 md:mb-0 md:w-2/12">
           <p class="mb-6 text-neutral-500 dark:text-neutral-300">
-            <small>Опубликовано <u>{{ item.date }}</u></small>
+            <small>Опубликовано <u>{{ item.published_at }}</u></small>
           </p>
         </div>
       </div>

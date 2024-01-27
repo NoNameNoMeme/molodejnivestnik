@@ -7,12 +7,12 @@
   <!-- Footer container -->
   <footer
       class="bg-neutral-100 text-center text-neutral-600 dark:bg-neutral-600 dark:text-neutral-200 lg:text-left">
-    <div
+<!--    <div
         class="flex items-center justify-center border-b-2 border-neutral-200 p-6 dark:border-neutral-500 lg:justify-between">
       <div class="mr-12 hidden lg:block">
         <span>Мы в социальных сетях:</span>
       </div>
-      <!-- Social network icons container -->
+      &lt;!&ndash; Social network icons container &ndash;&gt;
       <div class="flex justify-center">
         <a href="#!" class="mr-6 text-neutral-600 dark:text-neutral-200">
           <svg
@@ -79,10 +79,10 @@
       </div>
     </div>
 
-    <!-- Main container div: holds the entire content of the footer, including four sections (TW elements, Products, Useful links, and Contact), with responsive styling and appropriate padding/margins. -->
+    &lt;!&ndash; Main container div: holds the entire content of the footer, including four sections (TW elements, Products, Useful links, and Contact), with responsive styling and appropriate padding/margins. &ndash;&gt;
     <div class="mx-6 py-10 text-center md:text-left">
       <div class="grid-1 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-        <!-- TW elements section -->
+        &lt;!&ndash; TW elements section &ndash;&gt;
         <div class="">
           <h6
               class="mb-4 flex items-center justify-center font-semibold uppercase md:justify-start">
@@ -102,7 +102,7 @@
             elit.
           </p>
         </div>
-        <!-- Products section -->
+        &lt;!&ndash; Products section &ndash;&gt;
         <div class="">
           <h6
               class="mb-4 flex justify-center font-semibold uppercase md:justify-start">
@@ -129,7 +129,7 @@
             >
           </p>
         </div>
-        <!-- Useful links section -->
+        &lt;!&ndash; Useful links section &ndash;&gt;
         <div class="">
           <h6
               class="mb-4 flex justify-center font-semibold uppercase md:justify-start">
@@ -156,7 +156,7 @@
             >
           </p>
         </div>
-        <!-- Contact section -->
+        &lt;!&ndash; Contact section &ndash;&gt;
         <div>
           <h6
               class="mb-4 flex justify-center font-semibold uppercase md:justify-start">
@@ -216,11 +216,11 @@
           </p>
         </div>
       </div>
-    </div>
+    </div>-->
 
     <!--Copyright section-->
     <div class="bg-neutral-200 p-6 text-center dark:bg-neutral-700">
-      <span>© 2023 Copyright: </span>
+      <span>© 2024 Copyright: </span>
       <a class="font-semibold text-neutral-600 dark:text-neutral-400" href="https://kontora.tech/">Kontora</a>
     </div>
   </footer>
