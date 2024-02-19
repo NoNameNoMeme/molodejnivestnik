@@ -3,7 +3,7 @@
 let newsRef = ref([]);
 
 async function addTodo() {
-  const todo = await fetch('http://api.molodejnivestnik.ru/api/news').then((r) => r.json());
+  const todo = await fetch('http://api.molodejnivestnik.ru:8000/api/news').then((r) => r.json());
   newsRef.value = todo.data;
 }
 
@@ -14,6 +14,7 @@ addTodo()
   <div class="container py-8 h-full mx-auto max-w-7xl">
       <div class="overflow-x-auto">
         <NuxtLink
+            :to="`/create`"
             class="inline-block rounded bg-green-600 px-4 py-2 text-xs font-medium text-white hover:bg-green-700 cursor-pointer mb-8"
         >
           Создать новость

@@ -2,9 +2,11 @@
 </script>
 
 <template>
-  <LayoutHeader />
-  <slot />
-  <LayoutFooter />
+  <div class="flex flex-col min-h-screen">
+    <LayoutHeader />
+    <slot />
+    <LayoutFooter />
+  </div>
 </template>
 
 <style scoped>

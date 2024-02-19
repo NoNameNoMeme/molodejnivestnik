@@ -10,7 +10,7 @@ const router = useRouter()
 
 async function login(username: string, password: string) {
   try {
-    const response = await fetch('http://api.molodejnivestnik.ru/api/login', {
+    const response = await fetch('http://api.molodejnivestnik.ru:8000/api/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

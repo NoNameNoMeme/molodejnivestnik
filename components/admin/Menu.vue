@@ -1,7 +1,6 @@
 <script setup lang="ts">
 
 import { MENU_DATA } from "./menu.data";
-import {SelectIcon} from "radix-vue";
 </script>
 
 <template>
@@ -12,7 +11,6 @@ import {SelectIcon} from "radix-vue";
         :key="item.name"
         :to="item.url"
     >
-      <SelectIcon :name="item.icon" class="mr-3" />
       <span>{{ item.name }}</span>
     </NuxtLink>
   </div>

@@ -3,6 +3,7 @@
 const defaultLayout = 'default'
 const adminLayout = 'admin-layout'
 
+/*class="flex flex-grow flex-col"*/
 </script>
 
 <template>
@@ -10,3 +11,5 @@ const adminLayout = 'admin-layout'
     <NuxtPage />
   </NuxtLayout>
 </template>
+
+
