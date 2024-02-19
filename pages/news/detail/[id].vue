@@ -6,7 +6,7 @@ console.log(NewsId)
 let newsRef = ref({});
 
 async function addTodo() {
-  const todo = await fetch(`http://api.molodejnivestnik.ru:8000/api/news/${NewsId}`).then((r) => r.json());
+  const todo = await fetch(`http://api.molodejnivestnik.ru/api/news/${NewsId}`).then((r) => r.json());
   newsRef.value = todo.data;
 }
 

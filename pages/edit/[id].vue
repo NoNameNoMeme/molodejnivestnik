@@ -6,7 +6,7 @@ console.log(NewsId)
 let newsRef = ref({});
 
 async function addTodo() {
-  const todo = await fetch(`http://api.molodejnivestnik.ru:8000/api/news/${NewsId}`).then((r) => r.json());
+  const todo = await fetch(`http://api.molodejnivestnik.ru/api/news/${NewsId}`).then((r) => r.json());
   newsRef.value = todo.data;
 }
 
@@ -21,7 +21,7 @@ const handleFileUpload = async (event) => {
 
   try {
     // Отправляем POST-запрос
-    const response = await fetch(`http://api.molodejnivestnik.ru:8000/api/news/${NewsId}/images`, {
+    const response = await fetch(`http://api.molodejnivestnik.ru/api/news/${NewsId}/images`, {
       method: 'POST',
       body: formData,
     });
@@ -40,7 +40,7 @@ const handleFileUpload = async (event) => {
 };
 
 const deletePhoto = async (id) => {
-  await fetch(`http://api.molodejnivestnik.ru:8000/api/news/${NewsId}/images/${id}`, {
+  await fetch(`http://api.molodejnivestnik.ru/api/news/${NewsId}/images/${id}`, {
     method: 'DELETE',
   });
 }
@@ -48,7 +48,7 @@ const deletePhoto = async (id) => {
 const saveEdit = async () => {
   newsRef.value._method = 'PATCH';
   console.log(newsRef.value);
-  await fetch(`http://api.molodejnivestnik.ru:8000/api/news/${NewsId}`, {
+  await fetch(`http://api.molodejnivestnik.ru/api/news/${NewsId}`, {
     method: 'PATCH',
     body: newsRef.value,
   })

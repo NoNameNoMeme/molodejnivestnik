@@ -8,8 +8,8 @@ const router = useRouter()
 const newsMainRef = ref([]);
 
 async function getNews() {
-  const news = await fetch('http://api.molodejnivestnik.ru:8000/api/news?limit=5').then((r) => r.json());
-  const newsMain = await fetch('http://api.molodejnivestnik.ru:8000/api/news?main=1').then((r) => r.json());
+  const news = await fetch('http://api.molodejnivestnik.ru/api/news?limit=5').then((r) => r.json());
+  const newsMain = await fetch('http://api.molodejnivestnik.ru/api/news?main=1').then((r) => r.json());
   newsRef.value = news.data;
   newsMainRef.value = newsMain.data;
 }*/
@@ -18,16 +18,16 @@ const allNewsRef = ref([]);
 const mainNewsRef = ref([]);
 
 const getMainNews = async () => {
-  const response = await fetch('http://api.molodejnivestnik.ru:8000/api/news?main=1').then((res) => res.json());
+  const response = await fetch('http://api.molodejnivestnik.ru/api/news?main=1').then((res) => res.json());
   return response.data;
 }
 const getAllNews = async () => {
-  const response = await fetch('http://api.molodejnivestnik.ru:8000/api/news?limit=5').then((res) => res.json());
+  const response = await fetch('http://api.molodejnivestnik.ru/api/news?limit=5').then((res) => res.json());
   return response.data;
 }
 
 const test = async () => {
-  const items = await fetch('http://api.molodejnivestnik.ru:8000/api/news?limit=5').then((res) => res.json());
+  const items = await fetch('http://api.molodejnivestnik.ru/api/news?limit=5').then((res) => res.json());
   return await items.data;
 }
 

@@ -5,7 +5,7 @@ const newsRef = ref({
 
 const saveEdit = async () => {
   const newsRefJson = JSON.stringify(newsRef.value);
-  await fetch(`http://api.molodejnivestnik.ru:8000/api/news`, {
+  await fetch(`http://api.molodejnivestnik.ru/api/news`, {
     method: 'POST',
     body: newsRefJson,
     headers: {
