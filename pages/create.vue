@@ -5,6 +5,8 @@ const newsRef = ref({
 
 const showRef = ref({});
 
+const router = useRouter();
+
 const saveEdit = async () => {
   const formData = new FormData();
 
@@ -35,6 +37,28 @@ const saveEdit = async () => {
     method: 'POST',
     body: formData,
   });
+
+  try {
+    // Отправляем POST-запрос
+    const response = await fetch('http://api.molodejnivestnik.ru/api/news', {
+      method: 'POST',
+      body: formData,
+    });
+
+    if (!response.ok) {
+      console.error('Ошибка при загрузке файла:', response.statusText);
+      // Обработка ошибки при загрузке файла
+    } else {
+      console.log('Файл успешно загружен');
+      const responseData = await response.json();
+      const fileId = responseData.data.id;
+      await router.push(`/edit/${fileId}`);
+      // Обновляем данные после успешной загрузки файла
+
+    }
+  } catch (error) {
+    console.error('Ошибка при отправке POST-запроса:', error);
+  }
 }
 
 const handleFileUpload = (event) => {
