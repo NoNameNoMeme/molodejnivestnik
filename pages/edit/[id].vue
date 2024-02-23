@@ -71,8 +71,8 @@ const singleFileUpload = async (event) => {
 
   try {
     // Отправляем POST-запрос
-    const response = await fetch(`http://api.molodejnivestnik.ru/api/news/${NewsId}/image`, {
-      method: 'POST',
+    const response = await fetch(`http://api.molodejnivestnik.ru/api/news/${NewsId}`, {
+      method: 'PUT',
       body: formData,
     });
 
