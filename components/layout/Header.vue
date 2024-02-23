@@ -1,16 +1,23 @@
 <script setup>
 import { HEADER_DATA } from "~/components/layout/header.data";
 import { MagnifyingGlassIcon } from "@radix-icons/vue"
+const router = useRouter();
 
 const searchInputRef = ref('');
 
 const clearSearchInput = () => {
   searchInputRef.value = '';
 }
+
+const search = () => {
+  router.replace({name: 'newslist', query: { q:searchInputRef.value }})
+  searchInputRef.value = '';
+}
+
 </script>
 
 <template>
-  <header class="sticky top-0 z-20 flex flex-wrap items-center justify-between p-4 border-b bg-gradient-to-r from-blue-600 to-blue-300">
+  <header class="sticky top-0 z-20 flex flex-wrap flex-col gap-y-2 md:flex-row items-center justify-between p-4 border-b bg-gradient-to-r from-blue-600 to-blue-300">
     <div v-for="item in HEADER_DATA" :key="item.name" class="flex-1 first:text-left text-center">
       <NuxtLink :to="item.url" >
         <span class="text-xl text-white font-medium hover-underline-animation">{{ item.name }}</span>
@@ -36,7 +43,7 @@ const clearSearchInput = () => {
         </UiAlertDialogHeader>
         <UiAlertDialogFooter>
           <UiAlertDialogCancel @click="clearSearchInput">Отмена</UiAlertDialogCancel>
-          <UiAlertDialogAction>Найти</UiAlertDialogAction>
+          <UiAlertDialogAction @click="search">Найти</UiAlertDialogAction>
         </UiAlertDialogFooter>
       </UiAlertDialogContent>
     </UiAlertDialog>

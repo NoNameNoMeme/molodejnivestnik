@@ -3,32 +3,58 @@ const newsRef = ref({
   images: [],
 })
 
+const showRef = ref({});
+
 const saveEdit = async () => {
-  const newsRefJson = JSON.stringify(newsRef.value);
-  await fetch(`http://api.molodejnivestnik.ru/api/news`, {
+  const formData = new FormData();
+
+  // Добавляем текстовые данные
+  formData.append('title', newsRef.value.title);
+  formData.append('published_at', newsRef.value.published_at);
+  formData.append('description', newsRef.value.description);
+  formData.append('content', newsRef.value.content);
+  formData.append('image', newsRef.value.image.file);
+  /*for (const [image, index] of newsRef.value.images) {
+    formData.append(`images[${index}]`, image.file);
+  }*/
+  /*let filesToUpload = [];*/
+  for (let i = 0; i < newsRef.value.images.length; i++) {
+    /*filesToUpload.push( newsRef.value.images[i].file)*/
+    formData.append(`images[${i}]`, newsRef.value.images[i].file)
+  }
+  /*const imageFiles = newsRef.value.images.map(image => image.file);
+  console.log(imageFiles)
+  formData.append('images[]', imageFiles);*/
+
+  // Добавляем файлы
+  /*const imageFiles = newsRef.value.images[0];
+  formData.append('images[]', imageFiles);*/
+
+  // Отправляем запрос
+  await fetch('http://api.molodejnivestnik.ru/api/news', {
     method: 'POST',
-    body: newsRefJson,
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    body: formData,
   });
 }
 
 const handleFileUpload = (event) => {
-  const files = event.target.files;
+  const file = event.target.files[0];
 
-  for (let i = 0; i < files.length; i++) {
-    const file = files[i];
+  const imageObject = {
+    file: file,
+    path: URL.createObjectURL(file), // Создаем временный URL для предпросмотра
+  };
 
-    // Создайте объект для представления изображения
-    const imageObject = {
-      file: file,
-      path: URL.createObjectURL(file), // создаем временный URL для предпросмотра
-    };
+  newsRef.value.images.push(imageObject);
+};
 
-    // Добавьте объект изображения в массив
-    newsRef.value.images.push(imageObject);
-  }
+const singleFileUpload = (event) => {
+  const file = event.target.files[0];
+
+  newsRef.value.image = {
+    file: file,
+    path: URL.createObjectURL(file)
+  };
 };
 </script>
 
@@ -63,13 +89,23 @@ const handleFileUpload = (event) => {
 
       <h2 class="mb-6 text-3xl font-bold">Фотографии</h2>
       <div class="flex flex-col">
-        <label for="picture">Загрузите фото</label>
+        <label for="picture">Загрузите фото для главной</label>
+        <UiInput id="picture" class="mb-6 max-w-sm" type="file" name="image" @change="singleFileUpload" />
+
+        <div class="flex flex-row w-full flex-wrap gap-3">
+          <div v-if="newsRef.image" class="flex flex-col gap-3 flex-wrap mb-8 p-2 border justify-center max-w-sm">
+            <img :src="newsRef.image.path" alt="Uploaded Image" class="max-w-full object-cover h-[350px]" />
+<!--            <UiButton type="button" @click="deletePhoto(file.id)">Удалить</UiButton>-->
+          </div>
+        </div>
+
+        <label for="picture">Загрузите фото для слайдера</label>
         <UiInput id="picture" class="mb-6 max-w-sm" type="file" name="image" multiple @change="handleFileUpload" />
 
         <div class="flex flex-row w-full flex-wrap gap-3">
           <div v-for="(file, index) in newsRef.images" :key="index" class="flex flex-col gap-3 flex-wrap mb-8 p-2 border justify-center max-w-sm">
             <img :src="file.path" alt="Uploaded Image" class="max-w-full object-cover h-[350px]" />
-            <UiButton type="button" @click="deletePhoto(file.id)">Удалить</UiButton>
+<!--            <UiButton type="button" @click="deletePhoto(file.id)">Удалить</UiButton>-->
           </div>
         </div>
       </div>

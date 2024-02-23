@@ -1,4 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+// @ts-ignore
+// @ts-ignore
 export default defineNuxtConfig({
   devtools: { enabled: false },
   modules: [
@@ -16,5 +18,16 @@ export default defineNuxtConfig({
   },
   pinia: {
     storesDirs: ['./store/**']
+  },
+  app: {
+    head: {
+      meta: [
+        {
+          httpEquiv: 'Content-Security-Policy',
+          content: 'upgrade-insecure-requests',
+        },
+        // Другие мета-теги
+      ],
+    },
   },
 })

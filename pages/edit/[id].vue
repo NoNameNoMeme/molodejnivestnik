@@ -5,6 +5,8 @@ console.log(NewsId)
 
 let newsRef = ref({});
 
+const showRef = ref({});
+
 async function addTodo() {
   const todo = await fetch(`http://api.molodejnivestnik.ru/api/news/${NewsId}`).then((r) => r.json());
   newsRef.value = todo.data;
@@ -18,6 +20,7 @@ const handleFileUpload = async (event) => {
   // Создаем объект формы данных
   const formData = new FormData();
   formData.append('image', files);
+  console.log(formData)
 
   try {
     // Отправляем POST-запрос
@@ -53,6 +56,38 @@ const saveEdit = async () => {
     body: newsRef.value,
   })
 }
+
+const singleFileUpload = async (event) => {
+  const file = event.target.files[0];
+
+  showRef.value.image = {
+    file: file,
+    path: URL.createObjectURL(file)
+  };
+
+  const formData = new FormData();
+  formData.append('image', file);
+  console.log(formData)
+
+  try {
+    // Отправляем POST-запрос
+    const response = await fetch(`http://api.molodejnivestnik.ru/api/news/${NewsId}/image`, {
+      method: 'POST',
+      body: formData,
+    });
+
+    if (!response.ok) {
+      console.error('Ошибка при загрузке файла:', response.statusText);
+      // Обработка ошибки при загрузке файла
+    } else {
+      console.log('Файл успешно загружен');
+      // Обновляем данные после успешной загрузки файла
+      addTodo();
+    }
+  } catch (error) {
+    console.error('Ошибка при отправке POST-запроса:', error);
+  }
+};
 
 </script>
 
@@ -103,7 +138,17 @@ const saveEdit = async () => {
 
       <h2 class="mb-6 text-3xl font-bold">Фотографии</h2>
       <div class="flex flex-col">
-        <label for="picture">Загрузите фото</label>
+        <label for="picture">Загрузите фото для главной</label>
+        <UiInput id="picture" class="mb-6 max-w-sm" type="file" name="image" @change="singleFileUpload" />
+
+        <div class="flex flex-row w-full flex-wrap gap-3">
+          <div v-if="newsRef.image" class="flex flex-col gap-3 flex-wrap mb-8 p-2 border justify-center max-w-sm">
+            <img :src="newsRef.image" alt="Uploaded Image" class="max-w-full object-cover h-[350px]" />
+            <!--            <UiButton type="button" @click="deletePhoto(file.id)">Удалить</UiButton>-->
+          </div>
+        </div>
+
+        <label for="picture">Загрузите фото для слайдера</label>
         <UiInput id="picture" class="mb-6 max-w-sm" type="file" name="image" multiple @change="handleFileUpload" />
 
         <div class="flex flex-row w-full flex-wrap gap-3">

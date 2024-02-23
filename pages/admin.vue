@@ -11,7 +11,7 @@ addTodo()
 </script>
 
 <template>
-  <div class="container py-8 h-full mx-auto max-w-7xl">
+  <div class="container py-8 h-screen mx-auto max-w-7xl">
       <div class="overflow-x-auto">
         <NuxtLink
             :to="`/create`"

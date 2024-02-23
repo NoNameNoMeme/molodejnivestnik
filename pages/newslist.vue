@@ -1,18 +1,33 @@
-<script setup lang="ts">
-let newsRef = ref([]);
+<script setup>
+const route = useRoute();
+const newsRef = ref([]);
+const searchStringRef = ref('');
 
-async function addTodo() {
-  const todo = await fetch('http://api.molodejnivestnik.ru/api/news').then((r) => r.json());
-  newsRef.value = todo.data;
+const fetchString = async () => {
+  searchStringRef.value = route.query.q || '';
+  if (searchStringRef.value) {
+    const todo = await fetch(`http://api.molodejnivestnik.ru/api/news?search=${searchStringRef.value}`).then((r) => r.json());
+    newsRef.value = todo.data;
+  } else {
+      const todo = await fetch('http://api.molodejnivestnik.ru/api/news').then((r) => r.json());
+      newsRef.value = todo.data;
+  }
+  console.log(searchStringRef.value);
 }
 
-addTodo()
+onMounted(() => {
+  fetchString();
+});
 </script>
 
 <template>
   <div class="container my-24 mx-auto px-6 max-w-7xl">
     <section class="mb-32">
       <h2 class="mb-20 text-center sm:text-7xl text-5xl font-bold text-center">Последние новости</h2>
+      <div class="mb-20 flex flex-row wrap">
+        <UiInput v-model="searchStringRef"></UiInput>
+        <UiButton @click="fetchString">Найти</UiButton>
+      </div>
 
       <div class="mb-6 flex flex-wrap border-b-2" v-for="item in newsRef" :key="item.id">
 

@@ -6,10 +6,7 @@
   <!-- TW Elements is free under AGPL, with commercial license required for specific uses. See more details: https://tw-elements.com/license/ and contact us for queries at tailwind@mdbootstrap.com -->
   <!-- Footer container -->
   <footer class="bg-gradient-to-r from-green-600 to-emerald-300 text-center text-neutral-600 dark:bg-neutral-600 dark:text-neutral-200 lg:text-left sticky bottom-0">
-    <div class="flex items-center justify-center border-b border-green-800 p-2 dark:border-neutral-500 lg:justify-between">
-      <div class="mr-12 hidden lg:block">
-        <span class="text-black">Контакты:</span>
-      </div>
+    <div class="flex flex-col items-center justify-center px-8 py-2 dark:border-neutral-500 lg:justify-between md:flex-row">
       <!-- Social network icons container -->
       <div class="flex justify-center">
         <a class="flex items-center justify-center md:justify-start" href="mailto:molodejnivestnik.ufa@mail.ru">
@@ -25,6 +22,10 @@
           </svg>
           <span class="text-black">molodejnivestnik.ufa@mail.ru</span>
         </a>
+      </div>
+      <div class="p-1 text-center dark:bg-neutral-700">
+        <span class="text-black">© 2024 Copyright: </span>
+        <a class="text-black dark:text-neutral-400" href="https://kontora.tech/">Kontora</a>
       </div>
 <!--      <div class="flex justify-center">
         <a href="#!" class="mr-6 text-neutral-600 dark:text-neutral-200">
@@ -232,9 +233,9 @@
     </div>-->
 
     <!--Copyright section-->
-    <div class="bg-gradient-to-r from-green-600 to-emerald-300 p-1 text-center dark:bg-neutral-700">
+<!--    <div class="bg-gradient-to-r from-green-600 to-emerald-300 p-1 text-center dark:bg-neutral-700">
       <span class="text-black">© 2024 Copyright: </span>
       <a class="text-black dark:text-neutral-400" href="https://kontora.tech/">Kontora</a>
-    </div>
+    </div>-->
   </footer>
 </template>
