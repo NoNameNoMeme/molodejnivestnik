@@ -23,7 +23,7 @@ export default defineNuxtConfig({
     head: {
       meta: [
         {
-          httpEquiv: 'Content-Security-Policy',
+          "http-equiv": 'Content-Security-Policy',
           content: 'upgrade-insecure-requests',
         },
         // Другие мета-теги
