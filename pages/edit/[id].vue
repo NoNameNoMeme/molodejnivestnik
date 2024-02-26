@@ -49,11 +49,17 @@ const deletePhoto = async (id) => {
 }
 
 const saveEdit = async () => {
-  newsRef.value._method = 'PATCH';
+  newsRef.value._method = 'PUT';
+  const formData = new FormData();
+  formData.append('title', newsRef.value.title);
+  formData.append('published_at', newsRef.value.published_at);
+  formData.append('description', newsRef.value.description);
+  formData.append('content', newsRef.value.content);
+  formData.append('_method', newsRef.value._method);
   console.log(newsRef.value);
   await fetch(`http://api.molodejnivestnik.ru/api/news/${NewsId}`, {
-    method: 'PATCH',
-    body: newsRef.value,
+    method: 'POST',
+    body: formData,
   })
 }
 

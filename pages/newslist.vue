@@ -21,7 +21,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="container my-24 mx-auto px-6 max-w-7xl">
+  <div class="container my-24 mx-auto px-6 max-w-7xl h-screen">
     <section class="mb-32">
       <h2 class="mb-20 text-center sm:text-7xl text-5xl font-bold text-center">Последние новости</h2>
       <div class="mb-20 flex flex-row wrap">

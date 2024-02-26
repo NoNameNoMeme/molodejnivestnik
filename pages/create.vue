@@ -33,10 +33,10 @@ const saveEdit = async () => {
   formData.append('images[]', imageFiles);*/
 
   // Отправляем запрос
-  await fetch('http://api.molodejnivestnik.ru/api/news', {
+  /*await fetch('http://api.molodejnivestnik.ru/api/news', {
     method: 'POST',
     body: formData,
-  });
+  });*/
 
   try {
     // Отправляем POST-запрос
