@@ -46,6 +46,7 @@ const deletePhoto = async (id) => {
   await fetch(`http://api.molodejnivestnik.ru/api/news/${NewsId}/images/${id}`, {
     method: 'DELETE',
   });
+  addTodo();
 }
 
 const saveEdit = async () => {
@@ -165,10 +166,11 @@ const singleFileUpload = async (event) => {
         </div>
       </div>
     </section>
+  </div>
 
+  <div class="my-24 mx-auto px-6 max-w-4xl">
     <section>
       <h1 class="mb-6 text-3xl font-bold">Предпросмотр</h1>
-
       <h1 class="mb-6 text-3xl font-bold">
         {{ newsRef.title }}
       </h1>
@@ -182,11 +184,22 @@ const singleFileUpload = async (event) => {
       </p>
 
       <div class="flex justify-center">
-        <UiCarousel class="rounded-lg shadow-lg dark:shadow-black/20 mb-6">
+        <UiCarousel class="rounded-lg shadow-lg dark:shadow-black/20 mb-6 w-[550px]">
           <UiCarouselContent>
-            <UiCarouselItem v-for="image in newsRef.images" :key="image.id" class="md:basis-1/2 lg:basis-1/3">
-              <img :src="image.path"
-                   class="max-w-full object-cover h-[350px]" alt="image" />
+            <UiCarouselItem v-for="image in newsRef.images" :key="image.id">
+              <!--              <img :src="image.path"
+                               class="w-full h-full object-cover" alt="image" />-->
+              <div>
+                <UiCard>
+                  <UiCardContent class="flex aspect-square items-center justify-center p-3">
+                    <img
+                        :src="image.path"
+                        alt="image"
+                        class="w-full h-full object-cover"
+                    />
+                  </UiCardContent>
+                </UiCard>
+              </div>
             </UiCarouselItem>
           </UiCarouselContent>
           <UiCarouselPrevious />
@@ -194,7 +207,7 @@ const singleFileUpload = async (event) => {
         </UiCarousel>
       </div>
 
-      <p class="mb-6">
+      <p class="mb-6 whitespace-pre text-wrap text-justify">
         {{ newsRef.content }}
       </p>
     </section>

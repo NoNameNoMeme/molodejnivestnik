@@ -14,7 +14,7 @@ addTodo()
 </script>
 
 <template>
-  <div class="container my-24 mx-auto px-6">
+  <div class="my-24 mx-auto px-6 max-w-4xl">
     <!-- Section: Design Block -->
     <section class="mb-32">
       <h1 class="mb-6 text-3xl font-bold">
@@ -30,11 +30,22 @@ addTodo()
       </p>
 
       <div class="flex justify-center">
-        <UiCarousel class="rounded-lg shadow-lg dark:shadow-black/20 mb-6">
+        <UiCarousel class="rounded-lg shadow-lg dark:shadow-black/20 mb-6 w-[550px]">
           <UiCarouselContent>
-            <UiCarouselItem v-for="image in newsRef.images" :key="image.id" class="md:basis-1/2 lg:basis-1/3">
-              <img :src="image.path"
-                   class="max-w-full object-contain h-[350px]" alt="image" />
+            <UiCarouselItem v-for="image in newsRef.images" :key="image.id">
+              <!--              <img :src="image.path"
+                               class="w-full h-full object-cover" alt="image" />-->
+              <div>
+                <UiCard>
+                  <UiCardContent class="flex aspect-square items-center justify-center p-3">
+                    <img
+                        :src="image.path"
+                        alt="image"
+                        class="w-full h-full object-cover"
+                    />
+                  </UiCardContent>
+                </UiCard>
+              </div>
             </UiCarouselItem>
           </UiCarouselContent>
           <UiCarouselPrevious />
@@ -42,7 +53,7 @@ addTodo()
         </UiCarousel>
       </div>
 
-      <p class="mb-6">
+      <p class="mb-6 whitespace-pre text-wrap text-justify">
         {{ newsRef.content }}
       </p>
     </section>
