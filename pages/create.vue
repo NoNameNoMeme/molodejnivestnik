@@ -80,6 +80,14 @@ const singleFileUpload = (event) => {
     path: URL.createObjectURL(file)
   };
 };
+
+const deleteSingleFile = () => {
+  newsRef.value.image = null;
+}
+
+const deleteFileInSlider = (id) => {
+  newsRef.value.images.splice(id, 1);
+}
 </script>
 
 <template>
@@ -119,7 +127,7 @@ const singleFileUpload = (event) => {
         <div class="flex flex-row w-full flex-wrap gap-3">
           <div v-if="newsRef.image" class="flex flex-col gap-3 flex-wrap mb-8 p-2 border justify-center max-w-sm">
             <img :src="newsRef.image.path" alt="Uploaded Image" class="max-w-full object-cover h-[350px]" />
-<!--            <UiButton type="button" @click="deletePhoto(file.id)">Удалить</UiButton>-->
+            <UiButton type="button" @click="deleteSingleFile">Удалить</UiButton>
           </div>
         </div>
 
@@ -129,7 +137,7 @@ const singleFileUpload = (event) => {
         <div class="flex flex-row w-full flex-wrap gap-3">
           <div v-for="(file, index) in newsRef.images" :key="index" class="flex flex-col gap-3 flex-wrap mb-8 p-2 border justify-center max-w-sm">
             <img :src="file.path" alt="Uploaded Image" class="max-w-full object-cover h-[350px]" />
-<!--            <UiButton type="button" @click="deletePhoto(file.id)">Удалить</UiButton>-->
+            <UiButton type="button" @click="deleteFileInSlider(index)">Удалить</UiButton>
           </div>
         </div>
       </div>

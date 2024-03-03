@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import dayjs from 'dayjs';
 const route = useRoute()
 const NewsId = route.params.id as string
 console.log(NewsId)
@@ -22,7 +23,7 @@ addTodo()
       </h1>
       <div class="mb-6 flex items-center">
         <div>
-          <span> Опубликовано <u>{{ newsRef.published_at }}</u></span>
+          <span>Опубликовано <u>{{ dayjs(newsRef.published_at).locale('ru').format('DD MMMM YYYY') }}</u></span>
         </div>
       </div>
       <p class="mb-6">

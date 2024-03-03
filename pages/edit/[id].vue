@@ -1,4 +1,5 @@
 <script setup>
+import dayjs from 'dayjs';
 const route = useRoute()
 const NewsId = route.params.id
 console.log(NewsId)
@@ -176,7 +177,7 @@ const singleFileUpload = async (event) => {
       </h1>
       <div class="mb-6 flex items-center">
         <div>
-          <span> Опубликовано <u>{{ newsRef.published_at }}</u></span>
+          <span> Опубликовано <u>{{ dayjs(newsRef.published_at).locale('ru').format('DD MMMM YYYY') }}</u></span>
         </div>
       </div>
       <p class="mb-6">

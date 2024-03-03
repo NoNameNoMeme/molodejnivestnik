@@ -4,7 +4,7 @@
 export default defineNuxtConfig({
   devtools: { enabled: false },
   modules: [
-      '@nuxtjs/tailwindcss', 'shadcn-nuxt', '@pinia/nuxt',
+      '@nuxtjs/tailwindcss', 'shadcn-nuxt', '@pinia/nuxt', 'dayjs-nuxt',
     ['@nuxtjs/google-fonts', {
       families: {
         'IBM Plex Sans': true,
@@ -18,6 +18,9 @@ export default defineNuxtConfig({
   },
   pinia: {
     storesDirs: ['./store/**']
+  },
+  dayjs: {
+    locales: ['ru']
   },
   app: {
     head: {

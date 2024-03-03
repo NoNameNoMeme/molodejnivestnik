@@ -1,4 +1,5 @@
 <script setup>
+import dayjs from 'dayjs';
 const route = useRoute();
 const newsRef = ref([]);
 const searchStringRef = ref('');
@@ -44,15 +45,15 @@ onMounted(() => {
         </div>
 
         <div class="mb-6 mr-auto w-full shrink-0 grow-0 basis-auto px-3 md:mb-0 md:w-7/12 xl:w-7/12">
-          <h5 class="mb-3 text-lg font-bold">{{ item.title }}</h5>
-          <p class="text-neutral-500 dark:text-neutral-300">
+          <h5 class="mb-3 text-lg font-bold text-left">{{ item.title }}</h5>
+          <p class="text-neutral-500 dark:text-neutral-300 text-left">
             {{ item.description }}
           </p>
         </div>
 
         <div class="mb-6 mr-auto w-full shrink-0 grow-0 basis-auto px-3 md:mb-0 md:w-2/12">
           <p class="mb-6 text-neutral-500 dark:text-neutral-300">
-            <small>Опубликовано <u>{{ item.published_at }}</u></small>
+            <small>Опубликовано <u>{{ dayjs(newsRef.published_at).locale('ru').format('DD MMMM YYYY') }}</u></small>
           </p>
         </div>
       </div>

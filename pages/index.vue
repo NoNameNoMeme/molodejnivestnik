@@ -1,4 +1,5 @@
 <script setup>
+import dayjs from 'dayjs';
 useHead({
   title: 'Молодежные новости Башкортостана',
 })
@@ -78,7 +79,7 @@ const routeToAllNews = () => {
 
           <h5 class="mb-3 text-lg font-bold">{{ item.title }}</h5>
           <p class="mb-6 text-neutral-500 dark:text-neutral-300">
-            <small>Опубликовано <u>{{ item.published_at }}</u></small>
+            <small>Опубликовано <u>{{ dayjs(item.published_at).locale('ru').format('DD MMMM YYYY') }}</u></small>
           </p>
         </div>
       </div>
@@ -88,7 +89,7 @@ const routeToAllNews = () => {
 
   <!-- Section: Последние новости -->
   <div class="bg-gradient-to-r from-sky-100 to-white">
-    <section class="mb-32 text-center my-24 mx-auto px-6 max-w-7xl ">
+    <section class="mb-32 my-24 mx-auto max-w-7xl ">
       <h2 class="mb-20 text-center sm:text-8xl text-5xl font-bold text-center">Последние новости</h2>
 
       <div class="mb-6 flex flex-wrap border-b-2" v-for="item in allNewsRef" :key="item.id">
@@ -106,15 +107,15 @@ const routeToAllNews = () => {
         </div>
 
         <div class="mb-6 mr-auto w-full shrink-0 grow-0 basis-auto px-3 md:mb-0 md:w-7/12 xl:w-7/12">
-          <h5 class="mb-3 text-lg font-bold">{{ item.title }}</h5>
-          <p class="text-neutral-500 dark:text-neutral-300">
+          <h5 class="mb-3 text-lg font-bold text-left">{{ item.title }}</h5>
+          <p class="text-neutral-500 dark:text-neutral-300 text-left">
             {{ item.description }}
           </p>
         </div>
 
-        <div class="mb-6 mr-auto w-full shrink-0 grow-0 basis-auto px-3 md:mb-0 md:w-2/12">
+        <div class="mb-6 mr-auto w-full shrink-0 grow-0 basis-auto px-2 md:mb-0 md:w-2/12">
           <p class="mb-6 text-neutral-500 dark:text-neutral-300">
-            <small>Опубликовано <u>{{ item.published_at }}</u></small>
+            <small>Опубликовано <u>{{ dayjs(item.published_at).locale('ru').format('DD MMMM YYYY') }}</u></small>
           </p>
         </div>
       </div>

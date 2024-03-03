@@ -1,4 +1,5 @@
-<script setup lang="ts">
+<script setup>
+import dayjs from 'dayjs';
 
 let newsRef = ref([]);
 
@@ -25,6 +26,44 @@ async function deleteCurrentNews(id) {
   }
 }
 
+async function setMainNews(news) {
+  if (!news.main) {
+    const formData = new FormData();
+    formData.append('main', true);
+    try {
+      const response = await fetch(`http://api.molodejnivestnik.ru/api/news/${news.id}`, {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (response.ok) {
+        await addTodo();
+      }
+
+    } catch (error) {
+      console.log(error);
+    }
+    console.log(news.id)
+  } else {
+    const formData = new FormData();
+    formData.append('main', false);
+    try {
+      const response = await fetch(`http://api.molodejnivestnik.ru/api/news/${news.id}`, {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (response.ok) {
+        await addTodo();
+      }
+
+    } catch (error) {
+      console.log(error);
+    }
+    console.log(news.id)
+  }
+}
+
 addTodo()
 </script>
 
@@ -45,6 +84,7 @@ addTodo()
             <th class="whitespace-nowrap px-4 py-2 text-gray-900">Дата</th>
             <th class="whitespace-nowrap px-4 py-2 text-gray-900">Редактирование</th>
             <th class="whitespace-nowrap px-4 py-2 text-gray-900">Удаление</th>
+            <th class="whitespace-nowrap px-4 py-2 text-gray-900">На главную</th>
             <th class="px-4 py-2"></th>
           </tr>
           </thead>
@@ -53,7 +93,7 @@ addTodo()
           <tr v-for="news in newsRef" :key="news.id">
             <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">{{ news.id }}</td>
             <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ news.title }}</td>
-            <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ news.published_at }}</td>
+            <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ dayjs(news.published_at).locale('ru').format('DD MMMM YYYY') }}</td>
             <td class="whitespace-nowrap px-4 py-2">
               <NuxtLink
                   :to="`/edit/${news.id}`"
@@ -69,6 +109,9 @@ addTodo()
               >
                 Удалить
               </a>
+            </td>
+            <td class="whitespace-nowrap px-4 py-2 text-center">
+              <input type="checkbox" @change="setMainNews(news)" :checked="news.main" />
             </td>
           </tr>
           </tbody>
