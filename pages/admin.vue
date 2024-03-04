@@ -29,7 +29,8 @@ async function deleteCurrentNews(id) {
 async function setMainNews(news) {
   if (!news.main) {
     const formData = new FormData();
-    formData.append('main', true);
+    formData.append('main', 1);
+    formData.append('_method', 'PUT');
     try {
       const response = await fetch(`http://api.molodejnivestnik.ru/api/news/${news.id}`, {
         method: 'POST',
@@ -46,7 +47,8 @@ async function setMainNews(news) {
     console.log(news.id)
   } else {
     const formData = new FormData();
-    formData.append('main', false);
+    formData.append('main', 0);
+    formData.append('_method', 'PUT');
     try {
       const response = await fetch(`http://api.molodejnivestnik.ru/api/news/${news.id}`, {
         method: 'POST',
