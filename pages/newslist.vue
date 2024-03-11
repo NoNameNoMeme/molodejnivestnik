@@ -7,10 +7,10 @@ const searchStringRef = ref('');
 const fetchString = async () => {
   searchStringRef.value = route.query.q || '';
   if (searchStringRef.value) {
-    const todo = await fetch(`http://api.molodejnivestnik.ru/api/news?search=${searchStringRef.value}`).then((r) => r.json());
+    const todo = await fetch(`https://api.molodejnivestnik.ru/api/news?search=${searchStringRef.value}`).then((r) => r.json());
     newsRef.value = todo.data;
   } else {
-      const todo = await fetch('http://api.molodejnivestnik.ru/api/news').then((r) => r.json());
+      const todo = await fetch('https://api.molodejnivestnik.ru/api/news').then((r) => r.json());
       newsRef.value = todo.data;
   }
   console.log(searchStringRef.value);

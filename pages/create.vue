@@ -40,7 +40,7 @@ const saveEdit = async () => {
 
   try {
     // Отправляем POST-запрос
-    const response = await fetch('http://api.molodejnivestnik.ru/api/news', {
+    const response = await fetch('https://api.molodejnivestnik.ru/api/news', {
       method: 'POST',
       body: formData,
     });

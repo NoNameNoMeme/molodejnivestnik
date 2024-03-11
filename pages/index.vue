@@ -19,16 +19,16 @@ const allNewsRef = ref([]);
 const mainNewsRef = ref([]);
 
 const getMainNews = async () => {
-  const response = await fetch('http://api.molodejnivestnik.ru/api/news?main=1').then((res) => res.json());
+  const response = await fetch('https://api.molodejnivestnik.ru/api/news?main=1').then((res) => res.json());
   return response.data;
 }
 const getAllNews = async () => {
-  const response = await fetch('http://api.molodejnivestnik.ru/api/news?limit=5').then((res) => res.json());
+  const response = await fetch('https://api.molodejnivestnik.ru/api/news?limit=5').then((res) => res.json());
   return response.data;
 }
 
 const test = async () => {
-  const items = await fetch('http://api.molodejnivestnik.ru/api/news?limit=5').then((res) => res.json());
+  const items = await fetch('https://api.molodejnivestnik.ru/api/news?limit=5').then((res) => res.json());
   return await items.data;
 }
 
