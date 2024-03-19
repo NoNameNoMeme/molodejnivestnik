@@ -69,7 +69,8 @@ addTodo()
 
 <style scoped>
 .test-background {
-  background-image: url("public/img/ornament-left.png");
+  background-image: url("public/img/green-ornament.png"), url("public/img/blue_ornament.png");
+  background-position: left, right;
   background-repeat: repeat-y;
   background-size: auto;
 }

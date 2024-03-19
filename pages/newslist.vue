@@ -45,14 +45,14 @@ onMounted(() => {
           </div>
         </div>
 
-        <div class="mb-6 mr-auto w-full shrink-0 grow-0 basis-auto px-3 md:mb-0 md:w-7/12 xl:w-7/12">
+        <div class="mb-6 mr-auto w-full shrink-0 grow-0 basis-auto px-3 py-2 md:mb-0 md:w-7/12 xl:w-7/12">
           <h5 class="mb-3 text-lg font-bold text-left">{{ item.title }}</h5>
           <p class="text-neutral-500 dark:text-neutral-300 text-left line-clamp-4 text-ellipsis">
             {{ item.description }}
           </p>
         </div>
 
-        <div class="mb-6 mr-auto w-full shrink-0 grow-0 basis-auto px-3 md:mb-0 md:w-2/12">
+        <div class="mb-6 mr-auto w-full shrink-0 grow-0 basis-auto px-3 py-2 md:mb-0 md:w-2/12">
           <p class="text-neutral-500 dark:text-neutral-300">
             <small>Опубликовано <u>{{ dayjs(item.published_at).locale('ru').format('DD MMMM YYYY') }}</u></small>
           </p>
@@ -65,7 +65,8 @@ onMounted(() => {
 
 <style scoped>
 .test-background {
-    background-image: url("public/img/ornament-left.png");
+    background-image: url("public/img/green-ornament.png"), url("public/img/blue_ornament.png");
+    background-position: left, right;
     background-repeat: repeat-y;
     background-size: auto;
 }
