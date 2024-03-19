@@ -15,49 +15,62 @@ addTodo()
 </script>
 
 <template>
-  <div class="my-24 mx-auto px-6 max-w-4xl">
-    <!-- Section: Design Block -->
-    <section class="mb-32">
-      <h1 class="mb-6 text-3xl font-bold">
-        {{ newsRef.title }}
-      </h1>
-      <div class="mb-6 flex items-center">
-        <div>
-          <span>Опубликовано <u>{{ dayjs(newsRef.published_at).locale('ru').format('DD MMMM YYYY') }}</u></span>
+  <div class="test-background">
+    <div class="my-24 mx-auto px-6 max-w-4xl">
+      <!-- Section: Design Block -->
+      <section class="mb-32">
+        <h1 class="mb-6 text-3xl font-bold">
+          {{ newsRef.title }}
+        </h1>
+        <div class="mb-6 flex items-center justify-between">
+          <div>
+            <span>Опубликовано <u>{{ dayjs(newsRef.published_at).locale('ru').format('DD MMMM YYYY') }}</u></span>
+          </div>
+          <div>
+            <p class="font-bold text-green-800">{{ newsRef.tags }}</p>
+          </div>
         </div>
-      </div>
-      <p class="mb-6">
-        {{ newsRef.description }}
-      </p>
+        <p class="mb-6">
+          {{ newsRef.description }}
+        </p>
 
-      <div class="flex justify-center">
-        <UiCarousel class="rounded-lg shadow-lg dark:shadow-black/20 mb-6 w-[550px]">
-          <UiCarouselContent>
-            <UiCarouselItem v-for="image in newsRef.images" :key="image.id">
-              <!--              <img :src="image.path"
-                               class="w-full h-full object-cover" alt="image" />-->
-              <div>
-                <UiCard>
-                  <UiCardContent class="flex aspect-square items-center justify-center p-3">
-                    <img
-                        :src="image.path"
-                        alt="image"
-                        class="w-full h-full object-cover"
-                    />
-                  </UiCardContent>
-                </UiCard>
-              </div>
-            </UiCarouselItem>
-          </UiCarouselContent>
-          <UiCarouselPrevious />
-          <UiCarouselNext />
-        </UiCarousel>
-      </div>
+        <div class="flex justify-center">
+          <UiCarousel class="rounded-lg shadow-lg dark:shadow-black/20 mb-6 w-[550px]">
+            <UiCarouselContent>
+              <UiCarouselItem v-for="image in newsRef.images" :key="image.id">
+                <!--              <img :src="image.path"
+                                 class="w-full h-full object-cover" alt="image" />-->
+                <div>
+                  <UiCard>
+                    <UiCardContent class="flex aspect-square items-center justify-center p-3">
+                      <img
+                          :src="image.path"
+                          alt="image"
+                          class="w-full h-full object-cover"
+                      />
+                    </UiCardContent>
+                  </UiCard>
+                </div>
+              </UiCarouselItem>
+            </UiCarouselContent>
+            <UiCarouselPrevious />
+            <UiCarouselNext />
+          </UiCarousel>
+        </div>
 
-      <p class="mb-6 whitespace-pre text-wrap text-justify">
-        {{ newsRef.content }}
-      </p>
-    </section>
-    <!-- Section: Design Block -->
+        <p class="mb-6 whitespace-pre text-wrap text-justify">
+          {{ newsRef.content }}
+        </p>
+      </section>
+      <!-- Section: Design Block -->
+    </div>
   </div>
 </template>
+
+<style scoped>
+.test-background {
+  background-image: url("public/img/ornament-left.png");
+  background-repeat: repeat-y;
+  background-size: auto;
+}
+</style>

@@ -55,6 +55,7 @@ const saveEdit = async () => {
   const formData = new FormData();
   formData.append('title', newsRef.value.title);
   formData.append('published_at', newsRef.value.published_at);
+  formData.append('tags', newsRef.value.tags);
   formData.append('description', newsRef.value.description);
   formData.append('content', newsRef.value.content);
   formData.append('_method', newsRef.value._method);
@@ -117,6 +118,12 @@ const singleFileUpload = async (event) => {
           class="mb-10"
       ></UiTextarea>
 
+        <p>Тег</p>
+        <UiTextarea
+            v-model="newsRef.tags"
+            class="mb-10"
+        ></UiTextarea>
+
       <p>Описание</p>
       <UiTextarea
           v-model="newsRef.description"
@@ -175,10 +182,13 @@ const singleFileUpload = async (event) => {
       <h1 class="mb-6 text-3xl font-bold">
         {{ newsRef.title }}
       </h1>
-      <div class="mb-6 flex items-center">
+      <div class="mb-6 flex items-center justify-between">
         <div>
           <span> Опубликовано <u>{{ dayjs(newsRef.published_at).locale('ru').format('DD MMMM YYYY') }}</u></span>
         </div>
+          <div>
+              <p class="font-bold text-green-800">{{ newsRef.tags }}</p>
+          </div>
       </div>
       <p class="mb-6">
         {{ newsRef.description }}

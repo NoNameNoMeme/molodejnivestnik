@@ -5,11 +5,11 @@ export interface IHeaderItem {
 
 export const HEADER_DATA: IHeaderItem[] = [
     {
-        name: 'Молодежные новости Башкортостана',
-        url: '/',
+        name: 'Последние новости',
+        url: '/newslist',
     },
     {
-        name: 'Новости об активистах республики',
-        url: '/newslist',
+        name: 'Молодежные новости Башкортостана',
+        url: '/',
     },
 ]

@@ -13,6 +13,7 @@ const saveEdit = async () => {
   // Добавляем текстовые данные
   formData.append('title', newsRef.value.title);
   formData.append('published_at', newsRef.value.published_at);
+  formData.append('tags', newsRef.value.tags);
   formData.append('description', newsRef.value.description);
   formData.append('content', newsRef.value.content);
   formData.append('image', newsRef.value.image.file);
@@ -107,6 +108,12 @@ const deleteFileInSlider = (id) => {
           class="mb-10"
       ></UiTextarea>
 
+        <p>Тег</p>
+        <UiTextarea
+            v-model="newsRef.tags"
+            class="mb-10"
+        ></UiTextarea>
+
       <p>Описание</p>
       <UiTextarea
           v-model="newsRef.description"
@@ -164,10 +171,13 @@ const deleteFileInSlider = (id) => {
       <h1 class="mb-6 text-3xl font-bold">
         {{ newsRef.title }}
       </h1>
-      <div class="mb-6 flex items-center">
+      <div class="mb-6 flex items-center justify-between">
         <div>
           <span> Опубликовано <u>{{ newsRef.published_at }}</u></span>
         </div>
+          <div>
+              <p class="font-bold text-green-800">{{ newsRef.tags }}</p>
+          </div>
       </div>
       <p class="mb-6">
         {{ newsRef.description }}

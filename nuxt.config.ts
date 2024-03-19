@@ -3,6 +3,9 @@
 // @ts-ignore
 export default defineNuxtConfig({
   devtools: { enabled: false },
+  build: {
+    transpile: ['vue-remix-icons'],
+  },
   modules: [
       '@nuxtjs/tailwindcss', 'shadcn-nuxt', '@pinia/nuxt', 'dayjs-nuxt',
     ['@nuxtjs/google-fonts', {

@@ -27,11 +27,6 @@ const getAllNews = async () => {
   return response.data;
 }
 
-const test = async () => {
-  const items = await fetch('https://api.molodejnivestnik.ru/api/news?limit=5').then((res) => res.json());
-  return await items.data;
-}
-
 allNewsRef.value = await getAllNews();
 mainNewsRef.value = await getMainNews();
 
@@ -60,13 +55,13 @@ const routeToAllNews = () => {
     </section>
     <!-- Section: Design Block -->
   </div>
-  <div class="bg-gradient-to-r from-sky-100 to-white">
+  <div class="bg-gradient-to-r from-sky-100 to-white test-background">
     <!-- Section: Новости и события -->
     <section class="mb-32 text-center py-24 mx-auto px-6 max-w-7xl">
-      <h2 class="mb-24 text-center sm:text-8xl text-5xl font-bold">Новости и события</h2>
+      <h2 class="mb-24 text-center sm:text-8xl text-6xl font-bold bg-white rounded-lg">Новости и события</h2>
 
       <div class="grid gap-6 lg:grid-cols-2 xl:gap-x-12 xl:gap-y-12">
-        <div class="mb-6 lg:mb-0 rounded-lg flex flex-col item-in-news-main-ref" v-for="item in mainNewsRef" :key="item.title">
+        <div class="mb-6 lg:mb-0 rounded-lg flex flex-col item-in-news-main-ref bg-white p-0.5" v-for="item in mainNewsRef" :key="item.title">
           <div class="relative mb-6 overflow-hidden rounded-t-lg bg-cover bg-no-repeat shadow-lg dark:shadow-black/20"
                data-te-ripple-init data-te-ripple-color="light">
             <img :src="item.image" class="w-full object-cover h-[350px]" alt="Louvre" />
@@ -77,7 +72,7 @@ const routeToAllNews = () => {
             </NuxtLink>
           </div>
 
-          <h5 class="mb-3 text-lg font-bold">{{ item.title }}</h5>
+          <h5 class="mb-3 text-lg font-bold px-4">{{ item.title }}</h5>
           <p class="mb-6 text-neutral-500 dark:text-neutral-300">
             <small>Опубликовано <u>{{ dayjs(item.published_at).locale('ru').format('DD MMMM YYYY') }}</u></small>
           </p>
@@ -88,14 +83,14 @@ const routeToAllNews = () => {
   </div>
 
   <!-- Section: Последние новости -->
-  <div class="bg-gradient-to-r from-sky-100 to-white">
-    <section class="mb-32 my-24 mx-auto max-w-7xl ">
-      <h2 class="mb-20 text-center sm:text-8xl text-5xl font-bold text-center">Последние новости</h2>
+  <div class="bg-gradient-to-r from-sky-100 to-white test-background">
+    <section class="mb-32 my-24 py-24 px-6 mx-auto max-w-7xl ">
+      <h2 class="mb-20 text-center sm:text-8xl text-6xl font-bold bg-white rounded-lg">Последние новости</h2>
 
-      <div class="mb-6 flex flex-wrap border-b-2" v-for="item in allNewsRef" :key="item.id">
+      <div class="mb-6 flex flex-wrap border bg-white rounded-lg dark:shadow-black/20 p-0.5 item-in-news-main-ref" v-for="item in allNewsRef" :key="item.id">
 
-        <div class="mb-6 ml-auto w-full shrink-0 grow-0 basis-auto px-3 md:mb-0 md:w-3/12">
-          <div class="relative mb-6 overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg dark:shadow-black/20"
+        <div class="mb-6 ml-auto w-full shrink-0 grow-0 basis-auto md:mb-0 md:w-3/12">
+          <div class="relative overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg dark:shadow-black/20"
                data-te-ripple-init data-te-ripple-color="light">
             <img :src="item.image" class="w-full object-cover h-[160px]" alt="Louvre" />
             <NuxtLink :to="`/news/detail/${item.id}`">
@@ -108,15 +103,16 @@ const routeToAllNews = () => {
 
         <div class="mb-6 mr-auto w-full shrink-0 grow-0 basis-auto px-3 md:mb-0 md:w-7/12 xl:w-7/12">
           <h5 class="mb-3 text-lg font-bold text-left">{{ item.title }}</h5>
-          <p class="text-neutral-500 dark:text-neutral-300 text-left">
+          <p class="text-neutral-500 dark:text-neutral-300 text-left line-clamp-4 text-ellipsis">
             {{ item.description }}
           </p>
         </div>
 
         <div class="mb-6 mr-auto w-full shrink-0 grow-0 basis-auto px-2 md:mb-0 md:w-2/12">
-          <p class="mb-6 text-neutral-500 dark:text-neutral-300">
+          <p class=" text-neutral-500 dark:text-neutral-300">
             <small>Опубликовано <u>{{ dayjs(item.published_at).locale('ru').format('DD MMMM YYYY') }}</u></small>
           </p>
+          <p class="font-bold text-green-800">{{ item.tags }}</p>
         </div>
       </div>
       <div class="flex justify-center items-center">
@@ -150,5 +146,10 @@ const routeToAllNews = () => {
 
 .item-in-news-main-ref {
   box-shadow: 10px 9px 9px 1px rgba(34, 60, 80, 0.2)
+}
+
+.test-background {
+    background-image: url("public/img/ornament-left.png");
+    background-repeat: repeat-y;
 }
 </style>
