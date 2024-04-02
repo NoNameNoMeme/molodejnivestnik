@@ -5,6 +5,7 @@ useHead({
 })
 const router = useRouter()
 
+
 /*const newsRef = ref([]);
 const newsMainRef = ref([]);
 
@@ -20,15 +21,17 @@ const mainNewsRef = ref([]);
 
 const getMainNews = async () => {
   const response = await fetch('https://api.molodejnivestnik.ru/api/news?main=1').then((res) => res.json());
-  return response.data;
+    mainNewsRef.value = response.data;
 }
 const getAllNews = async () => {
   const response = await fetch('https://api.molodejnivestnik.ru/api/news?limit=5').then((res) => res.json());
-  return response.data;
+    allNewsRef.value = response.data;
 }
 
-allNewsRef.value = await getAllNews();
-mainNewsRef.value = await getMainNews();
+onMounted(() => {
+    getMainNews();
+    getAllNews();
+});
 
 const routeToAllNews = () => {
   router.push('/newslist');
@@ -61,10 +64,10 @@ const routeToAllNews = () => {
       <h2 class="mb-24 text-center sm:text-8xl text-6xl font-bold bg-white rounded-lg">Новости и события</h2>
 
       <div class="grid gap-6 lg:grid-cols-2 xl:gap-x-12 xl:gap-y-12">
-        <div class="mb-6 lg:mb-0 rounded-lg flex flex-col item-in-news-main-ref bg-white p-0.5" v-for="item in mainNewsRef" :key="item.title">
+        <div class="mb-6 lg:mb-0 rounded-lg flex flex-col item-in-news-main-ref bg-white p-0.5" v-for="item in mainNewsRef" :key="item.id">
           <div class="relative mb-6 overflow-hidden rounded-t-lg bg-cover bg-no-repeat shadow-lg dark:shadow-black/20"
                data-te-ripple-init data-te-ripple-color="light">
-            <img :src="item.image" class="w-full object-cover h-[350px]" alt="Louvre" />
+            <img :src="item.image" class="w-full object-cover h-[350px]" :alt="item.image" />
             <NuxtLink :to="`/news/detail/${item.id}`">
               <div
                   class="absolute top-0 right-0 bottom-0 left-0 h-full w-full overflow-hidden bg-fixed opacity-0 transition duration-300 ease-in-out hover:opacity-100 bg-[hsla(0,0%,98.4%,.15)]">
@@ -92,7 +95,7 @@ const routeToAllNews = () => {
         <div class="mb-6 ml-auto w-full shrink-0 grow-0 basis-auto md:mb-0 md:w-3/12">
           <div class="relative overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg dark:shadow-black/20"
                data-te-ripple-init data-te-ripple-color="light">
-            <img :src="item.image" class="w-full object-cover h-[160px]" alt="Louvre" />
+            <img :src="item.image" class="w-full object-cover h-[160px]" :alt="item.image" />
             <NuxtLink :to="`/news/detail/${item.id}`">
               <div
                   class="absolute top-0 right-0 bottom-0 left-0 h-full w-full overflow-hidden bg-fixed opacity-0 transition duration-300 ease-in-out hover:opacity-100 bg-[hsla(0,0%,98.4%,.15)]">
