@@ -89,6 +89,10 @@ const deleteSingleFile = () => {
 const deleteFileInSlider = (id) => {
   newsRef.value.images.splice(id, 1);
 }
+
+const goBack = () => {
+    router.go(-1);
+}
 </script>
 
 <template>
@@ -157,7 +161,7 @@ const deleteFileInSlider = (id) => {
           Сохранить
         </NuxtLink>
         <NuxtLink
-            @click="this.$router.go(-1)"
+            @click="goBack"
             class="inline-block rounded bg-red-600 px-4 py-2 text-xs font-medium text-white hover:bg-red-700 cursor-pointer"
         >
           Назад
