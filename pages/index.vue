@@ -106,7 +106,7 @@ const routeToAllNews = () => {
 
         <div class="mb-6 mr-auto w-full shrink-0 grow-0 basis-auto px-3 md:mb-0 md:w-7/12 xl:w-7/12">
           <h5 class="mb-3 text-lg font-bold text-left">{{ item.title }}</h5>
-          <p class="text-neutral-500 dark:text-neutral-300 text-left line-clamp-4 text-ellipsis">
+          <p class="text-neutral-500 dark:text-neutral-300 text-left line-clamp-3 text-ellipsis">
             {{ item.description }}
           </p>
         </div>
@@ -115,7 +115,7 @@ const routeToAllNews = () => {
           <p class=" text-neutral-500 dark:text-neutral-300">
             <small>Опубликовано <u>{{ dayjs(item.published_at).locale('ru').format('DD MMMM YYYY') }}</u></small>
           </p>
-          <p class="font-bold text-green-800">{{ item.tags }}</p>
+          <p class="font-bold text-green-800">{{ item.tags === 'undefined' ? '' : item.tags }}</p>
         </div>
       </div>
       <div class="flex justify-center items-center">

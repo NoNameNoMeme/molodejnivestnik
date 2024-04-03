@@ -15,7 +15,7 @@ addTodo()
 </script>
 
 <template>
-  <div class="test-background">
+  <div class="test-background min-h-screen">
     <div class="my-24 mx-auto px-6 max-w-4xl">
       <!-- Section: Design Block -->
       <section class="mb-32">
@@ -27,7 +27,7 @@ addTodo()
             <span>Опубликовано <u>{{ dayjs(newsRef.published_at).locale('ru').format('DD MMMM YYYY') }}</u></span>
           </div>
           <div>
-            <p class="font-bold text-green-800">{{ newsRef.tags }}</p>
+            <p class="font-bold text-green-800">{{ newsRef.tags === 'undefined' ? '' : newsRef.tags }}</p>
           </div>
         </div>
         <p class="mb-6">

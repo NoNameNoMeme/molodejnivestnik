@@ -11,7 +11,7 @@ const fetchString = async () => {
     const todo = await fetch(`https://api.molodejnivestnik.ru/api/news?search=${searchStringRef.value}`).then((r) => r.json());
     newsRef.value = todo.data;
   } else {
-      const todo = await fetch('https://api.molodejnivestnik.ru/api/news').then((r) => r.json());
+      const todo = await fetch('https://api.molodejnivestnik.ru/api/news?limit=1000').then((r) => r.json());
       newsRef.value = todo.data;
   }
   console.log(searchStringRef.value);
@@ -47,7 +47,7 @@ onMounted(() => {
 
         <div class="mb-6 mr-auto w-full shrink-0 grow-0 basis-auto px-3 py-2 md:mb-0 md:w-7/12 xl:w-7/12">
           <h5 class="mb-3 text-lg font-bold text-left">{{ item.title }}</h5>
-          <p class="text-neutral-500 dark:text-neutral-300 text-left line-clamp-4 text-ellipsis">
+          <p class="text-neutral-500 dark:text-neutral-300 text-left line-clamp-3 text-ellipsis">
             {{ item.description }}
           </p>
         </div>
@@ -56,7 +56,7 @@ onMounted(() => {
           <p class="text-neutral-500 dark:text-neutral-300">
             <small>Опубликовано <u>{{ dayjs(item.published_at).locale('ru').format('DD MMMM YYYY') }}</u></small>
           </p>
-            <p class="font-bold text-green-800">{{ item.tags }}</p>
+            <p class="font-bold text-green-800">{{ item.tags === 'undefined' ? '' : item.tags }}</p>
         </div>
       </div>
     </section>

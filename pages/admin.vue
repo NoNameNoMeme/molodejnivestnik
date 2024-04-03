@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 let newsRef = ref([]);
 
 async function addTodo() {
-  const todo = await fetch('http://api.molodejnivestnik.ru/api/news').then((r) => r.json());
+  const todo = await fetch('http://api.molodejnivestnik.ru/api/news?limit=1000').then((r) => r.json());
   newsRef.value = todo.data;
 }
 
@@ -70,7 +70,7 @@ addTodo()
 </script>
 
 <template>
-  <div class="container py-8 h-screen mx-auto max-w-7xl">
+  <div class="container py-8 min-h-screen mx-auto max-w-7xl">
       <div class="overflow-x-auto">
         <NuxtLink
             :to="`/create`"
@@ -94,7 +94,7 @@ addTodo()
           <tbody class="divide-y divide-gray-200">
           <tr v-for="news in newsRef" :key="news.id">
             <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">{{ news.id }}</td>
-            <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ news.title }}</td>
+            <td class="px-4 py-2 text-gray-700">{{ news.title }}</td>
             <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ dayjs(news.published_at).locale('ru').format('DD MMMM YYYY') }}</td>
             <td class="whitespace-nowrap px-4 py-2">
               <NuxtLink

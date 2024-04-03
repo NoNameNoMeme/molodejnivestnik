@@ -187,7 +187,7 @@ const singleFileUpload = async (event) => {
           <span> Опубликовано <u>{{ dayjs(newsRef.published_at).locale('ru').format('DD MMMM YYYY') }}</u></span>
         </div>
           <div>
-              <p class="font-bold text-green-800">{{ newsRef.tags }}</p>
+              <p class="font-bold text-green-800">{{ newsRef.tags === 'undefined' ? '' : newsRef.tags }}</p>
           </div>
       </div>
       <p class="mb-6">
